@@ -2,10 +2,9 @@
 import React, { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useSession } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/react'
 
 const Header = () => {
-    const [isSignedIn, setIsSignedIn] = useState<boolean>(false);
     const [open, setOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const { data: session } = useSession();
@@ -30,13 +29,13 @@ const Header = () => {
                             <div className="relative" ref={menuRef}>
                                 <button onClick={() => setOpen(!open)} className="flex items-center gap-4 hover:bg-surface transition-all rounded-md px-4 py-1 cursor-pointer">
                                     <span>{session.user?.name || 'Kullanıcı Adı'}</span>
-                                    <Image src="/default-user.png" alt="Profilim" width={30} height={30} className="rounded-full" />
+                                    <Image src={session.user?.image || "/default-user.png"} alt="Profilim" width={30} height={30} className="rounded-full" />
                                 </button>
                                 {open && (
                                     <div className="absolute right-0 mt-2 w-48 rounded-md bg-secondary shadow-lg border border-border p-2 flex flex-col">
-                                        <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Profilim</Link>
+                                        <Link href='/profile' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Profilim</Link>
                                         <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Ayarlar</Link>
-                                        <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Çıkış yap</Link>
+                                        <Link href='/' onClick={() => signOut()} className='hover:bg-surface transition-all rounded-md px-4 py-1'>Çıkış yap</Link>
                                     </div>
                                 )}
                             </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="w-full flex flex-col items-center">
+    <main className="w-full flex flex-col items-center select-none">
       <div className="fixed w-screen h-screen -z-10 bg-primary-50 backdrop-blur-3xl"></div>
       <div className="w-full h-fit md:h-[calc(100vh-96px)] mt-12 md:mt-24 flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 md:h-full flex flex-col items-center justify-center p-8 md:p-14">
