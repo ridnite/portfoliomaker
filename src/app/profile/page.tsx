@@ -1,11 +1,19 @@
 'use client'
-import React from 'react'
-import { useSession, signOut } from 'next-auth/react'
+import React, { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Cards from '@/components/cards';
+import Link from 'next/link';
 
 function page() {
     const { data: session } = useSession();
+    const router = useRouter();
+    useEffect(() => {
+        if (!session) {
+            router.push('/');
+        }
+    }, [session]);
     return (
         <div className='w-full flex flex-col items-center select-none'>
             <div className='w-full h-fit p-4 md:p-8 flex flex-col items-center mt-12 md:mt-24'>
@@ -18,10 +26,10 @@ function page() {
                 </div>
                 <div className='w-4/5 h-1 bg-border mt-4 md:mt-8'></div>
                 <div className='w-4/5 h-fit py-4 grid grid-col-1 sm:grid-col-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-4'>
-                    <div className='p-4 rounded-xl border-2 border-border flex flex-col items-center justify-center cursor-pointer bg-primary hover:bg-secondary text-text-secondary hover:text-text-primary transition-all'>
+                    <Link href={"/createpage"} className='p-4 rounded-xl border-2 border-border flex flex-col items-center justify-center cursor-pointer bg-primary hover:bg-secondary text-text-secondary hover:text-text-primary transition-all'>
                         <h3 className='font-bold text-7xl break-words'>+</h3>
                         <p className='text-lg'>Yeni içerik Ekle</p>
-                    </div>
+                    </Link>
                     <Cards image={"/null-photo.jpg"} title={"Card Title"} />
                 </div>
             </div>
