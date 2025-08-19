@@ -53,7 +53,7 @@ const Header = () => {
                 <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Öne Çıkanlar</Link>
                 <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Kategoriler</Link>
                 <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Dökümantasyon</Link>
-                <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Github</Link>
+                <Link href='https://github.com/ridnite/portfoliomaker' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Github</Link>
             </div>
         </nav>
     )

@@ -12,7 +12,7 @@ function page() {
 
     const layouts = [
         "Basit",
-        "layout2",
+        "Tasarımsal",
         "layout3",
         "layout4",
         "layout5",
@@ -27,7 +27,7 @@ function page() {
         switch (selectedLayout) {
             case 'Basit':
                 return <Layout1 />;
-            case 'layout2':
+            case 'Tasarımsal':
                 return <Layout2 />;
             case 'layout3':
                 return <Layout3 />;

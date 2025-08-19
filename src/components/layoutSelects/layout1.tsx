@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
+import axios from 'axios';
+import { id } from 'zod/locales';
 
 const schema = z.object({
   photo: z.string().url(),
@@ -47,13 +49,45 @@ const Layout1 = () => {
     }
   });
 
-  const onSubmit = form.handleSubmit((data: z.infer<typeof schema>) => {
-    console.log(data);
-  });
+  const onSubmit = async (data: z.infer<typeof schema>) => {
+    const contentdata = {
+      layout: 'Basit',
+      id: session?.user?.id,
+      name: data.name,
+      photo: data.photo,
+      description: data.description,
+      about: data.about,
+      school: data.school,
+      projects: [
+        {
+          title: data.project1.title,
+          description: data.project1.description,
+          github: data.project1.github
+        },
+        {
+          title: data.project2.title,
+          description: data.project2.description,
+          github: data.project2.github
+        },
+        {
+          title: data.project3.title,
+          description: data.project3.description,
+          github: data.project3.github
+        }
+      ]
+    };
+
+    try {
+      const response = await axios.post('/api/createpage', contentdata);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+  };
 
   return (
     <div className='w-9/10 md:w-8/10 h-fit flex flex-col gap-4'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className='w-full flex flex-col md:flex-row gap-4'>
           <div className='md:w-1/2 w-full flex flex-col gap-4'>
             <input type="text" placeholder='ad soyad' {...form.register('name')} className='border-2 border-border p-2 rounded-md bg-secondary px-2 text-text-primary w-full h-12' />

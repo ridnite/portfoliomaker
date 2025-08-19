@@ -1,19 +1,33 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import Cards from '@/components/cards';
 import Link from 'next/link';
+import axios from 'axios';
 
 function page() {
     const { data: session } = useSession();
+    const [profileData, setProfileData] = useState<[] | null>(null);
     const router = useRouter();
+    
     useEffect(() => {
         if (!session) {
             router.push('/');
         }
-    }, [session]);
+        if (!session?.user?.id) return;
+        const fetchData = async () => {
+            const response = await axios.get('/api/profilecards', {
+                headers: {
+                    'userid': session?.user?.id   
+                }
+            });
+            console.log(response.data);
+            setProfileData(response.data);
+        }
+        fetchData();
+    }, [session, router]);
     return (
         <div className='w-full flex flex-col items-center select-none'>
             <div className='w-full h-fit p-4 md:p-8 flex flex-col items-center mt-12 md:mt-24'>
@@ -30,7 +44,12 @@ function page() {
                         <h3 className='font-bold text-7xl break-words'>+</h3>
                         <p className='text-lg'>Yeni içerik Ekle</p>
                     </Link>
-                    <Cards image={"/null-photo.jpg"} title={"Card Title"} />
+                    {
+                        profileData?.map((card: any) => (
+                            <Cards key={card.id} image={card.image} title={card.title} link={`/prfts/${card.id}`} />
+                        ))
+                    }
+                    {/* <Cards image={"/null-photo.jpg"} title={"Card Title"} link={"/editpage"} /> */}
                 </div>
             </div>
         </div>

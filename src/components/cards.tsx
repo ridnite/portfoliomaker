@@ -1,11 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
-const Cards = ({ image, title }: { image: string, title: string }) => {
+const Cards = ({ image, title, link }: { image: string, title: string, link: string }) => {
   return (
-    <div className='p-4 rounded-xl border-2 border-border flex flex-col'>
-      <img src={image} alt={title} className='w-full h-32 object-cover rounded-md' />
+    <Link href={link} className='p-4 rounded-xl border-2 border-border flex flex-col'>
+      <img src={image} alt={"resim"} className='w-full h-32 object-cover rounded-md' />
       <h3 className='font-bold text-lg text-text-primary break-words mt-2'>{title}</h3>
-    </div>
+    </Link>
   )
 }
 
