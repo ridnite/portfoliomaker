@@ -3,9 +3,6 @@ import React, { useState } from 'react'
 import Layout1 from '@/components/layoutSelects/layout1';
 import Layout2 from '@/components/layoutSelects/layout2';
 import Layout3 from '@/components/layoutSelects/layout3';
-import Layout4 from '@/components/layoutSelects/layout4';
-import Layout5 from '@/components/layoutSelects/layout5';
-import Layout6 from '@/components/layoutSelects/layout6';
 
 function page() {
     const [selectedLayout, setSelectedLayout] = useState<string | null>("");
@@ -13,10 +10,7 @@ function page() {
     const layouts = [
         "Basit",
         "Tasarımsal",
-        "layout3",
-        "layout4",
-        "layout5",
-        "layout6"
+        "Gelişmiş",
     ]
 
     const handleLayoutSelect = (layout: string) => {
@@ -29,14 +23,8 @@ function page() {
                 return <Layout1 />;
             case 'Tasarımsal':
                 return <Layout2 />;
-            case 'layout3':
+            case 'Gelişmiş':
                 return <Layout3 />;
-            case 'layout4':
-                return <Layout4 />;
-            case 'layout5':
-                return <Layout5 />;
-            case 'layout6':
-                return <Layout6 />;
             default:
                 return null;
         }

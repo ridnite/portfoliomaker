@@ -3,6 +3,7 @@ import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import Layout1page from '@/components/layoutPages/Layout1page'
 import Layout2page from '@/components/layoutPages/Layout2page'
+import Layout3page from '@/components/layoutPages/Layout3page'
 import axios from 'axios';
 
 function page() {
@@ -32,6 +33,8 @@ function page() {
         return <Layout1page layoutData={layoutData} />;
       case 'Tasarımsal':
         return <Layout2page layoutData={layoutData} />;
+      case 'Gelişmiş':
+        return <Layout3page layoutData={layoutData}/>;
       default:
         return null;
     }

@@ -46,7 +46,7 @@ function page() {
                     </Link>
                     {
                         profileData?.map((card: any) => (
-                            <Cards key={card.id} image={card.image} title={card.title} link={`/prfts/${card.id}`} />
+                            <Cards key={card.id} image={card.image} title={card.users.username} link={`/prfts/${card.id}`} />
                         ))
                     }
                     {/* <Cards image={"/null-photo.jpg"} title={"Card Title"} link={"/editpage"} /> */}

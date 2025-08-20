@@ -6,7 +6,6 @@ import * as z from 'zod'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import axios from 'axios';
-import { id } from 'zod/locales';
 
 const schema = z.object({
   layout: z.string().min(1).max(100),

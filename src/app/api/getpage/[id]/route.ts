@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const { id } = await params;
+export async function GET(request: Request, context: any) {
+  const { id } = context.params;
 
   const { data, error } = await supabaseAdmin
     .from("pages")

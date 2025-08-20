@@ -34,7 +34,7 @@ const Header = () => {
                                 {open && (
                                     <div className="absolute right-0 mt-2 w-48 rounded-md bg-secondary shadow-lg border border-border p-2 flex flex-col">
                                         <Link href='/profile' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Profilim</Link>
-                                        <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Ayarlar</Link>
+                                        <Link href='/settings' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Ayarlar</Link>
                                         <Link href='/' onClick={() => signOut()} className='hover:bg-surface transition-all rounded-md px-4 py-1'>Çıkış yap</Link>
                                     </div>
                                 )}
@@ -49,10 +49,7 @@ const Header = () => {
             </div>
             <div className='w-full hidden h-1/2 md:flex items-center px-4 lg:px-8 gap-4 text-text-secondary overflow-x-scroll custom-scroll'>
                 <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Ana Sayfa</Link>
-                <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Keşfet</Link>
-                <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Öne Çıkanlar</Link>
-                <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Kategoriler</Link>
-                <Link href='/' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Dökümantasyon</Link>
+                <Link href='/discover' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Keşfet</Link>
                 <Link href='https://github.com/ridnite/portfoliomaker' className='hover:bg-surface transition-all rounded-md px-4 py-1'>Github</Link>
             </div>
         </nav>

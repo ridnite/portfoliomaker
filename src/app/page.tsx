@@ -1,7 +1,11 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from 'next-auth/react'
 
 export default function Home() {
+  const { data: session } = useSession();
+
   return (
     <main className="w-full flex flex-col items-center select-none">
       <div className="fixed w-screen h-screen -z-10 bg-primary-50 backdrop-blur-3xl"></div>
@@ -11,7 +15,7 @@ export default function Home() {
             <span className="text-accent-navy font-bold">Porfolio Maker </span>
             <span className="text-text-primary">ile kendi portfolyonu tasarla</span>          
           </div>
-          <Link href='/' className='text-text-primary text-2xl border-2 flex flex-col items-center justify-center border-border bg-accent-navy transition-all rounded-lg px-4 pb-1.5 pt-1 mt-4'>Şimdi başla</Link>
+          <Link href={session ? "/profile" : "/signin"} className='text-text-primary text-2xl border-2 flex flex-col items-center justify-center border-border bg-accent-navy transition-all rounded-lg px-4 pb-1.5 pt-1 mt-4'>Şimdi başla</Link>
         </div>
         <div className="w-full md:w-1/2 md:h-full flex flex-col gap-4 py-12 items-center justify-center select-none">
           <div className="absolute md:w-[50vh] md:h-[50vh] rounded-full translate-x-[-30%] -z-20 bg-accent-navy spin-div">
